@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Box, Container } from "@chakra-ui/react";
 import { LoginForm } from "./components/auth/LoginForm.tsx";
 import { RegisterForm } from "./components/auth/RegisterForm.tsx";

@@ -1,0 +1,57 @@
+{
+  "backend_variables": {
+    "MONGO_URI": "mongodb+srv://andrescarias1_db_user:0HHZ2hhBp7aTe8l2@cluster0.a5igzmz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "PORT": "3000",
+    "JWT_SECRET": "inventario_ti_secret_key_2025_muy_segura_cambiar_en_produccion",
+    "JWT_REFRESH_SECRET": "inventario_ti_refresh_secret_key_2025_muy_segura_cambiar_en_produccion",
+    "JWT_EXPIRE": "15m",
+    "JWT_REFRESH_EXPIRE": "7d",
+    "EMAIL_HOST": "smtp.gmail.com",
+    "EMAIL_PORT": "587",
+    "EMAIL_USER": "inamicrew@gmail.com",
+    "EMAIL_PASSWORD": "inami2025.",
+    "EMAIL_FROM": "Inventario TI <inamicrew@gmail.com>",
+    "NODE_ENV": "production",
+    "FRONTEND_URL": "https://TU_URL_FRONTEND_RAILWAY_AQUI",
+    "ADMIN_NOMBRE": "Administrador TI",
+    "ADMIN_EMAIL": "admin@inventarioti.com",
+    "ADMIN_PASSWORD": "Admin_TI_2025_Secure!"
+  },
+  "frontend_variables": {
+    "VITE_API_URL": "https://TU_URL_BACKEND_RAILWAY_AQUI/api"
+  },
+  "instrucciones_despliegue": {
+    "paso_1": "� BACKEND: Crea un servicio en Railway desde GitHub",
+    "paso_2": "⚙️ BACKEND: Ve a Variables → Raw Editor → Pega todas las 'backend_variables'",
+    "paso_3": "🔧 BACKEND: Settings → Root Directory: / (raíz)",
+    "paso_4": "🚀 BACKEND: Start Command: node backend/server.js",
+    "paso_5": "� BACKEND: Copia la URL del backend desplegado (ej: https://inventario-backend.up.railway.app)",
+    "paso_6": "� FRONTEND: Crea otro servicio en Railway desde el mismo repo",
+    "paso_7": "⚙️ FRONTEND: Ve a Variables → Agrega VITE_API_URL con la URL del backend + /api",
+    "paso_8": "� FRONTEND: Settings → Root Directory: frontend",
+    "paso_9": "🏗️ FRONTEND: Build Command: npm install && npm run build",
+    "paso_10": "🚀 FRONTEND: Start Command: npx serve dist -l $PORT",
+    "paso_11": "📋 FRONTEND: Copia la URL del frontend (ej: https://inventario-frontend.up.railway.app)",
+    "paso_12": "🔗 BACKEND: Actualiza FRONTEND_URL con la URL del frontend en las variables del backend",
+    "paso_13": "♻️ Ambos servicios se redesplegarán automáticamente",
+    "paso_14": "✅ Abre la URL del frontend y prueba el login"
+  },
+  "comandos_backend": {
+    "root_directory": "/",
+    "build_command": "npm install",
+    "start_command": "node backend/server.js"
+  },
+  "comandos_frontend": {
+    "root_directory": "frontend",
+    "build_command": "npm install && npm run build",
+    "start_command": "npx serve dist -l $PORT",
+    "output_directory": "dist"
+  },
+  "notas_importantes": {
+    "1": "🔄 Primero despliega el BACKEND, copia su URL",
+    "2": "📱 Luego despliega el FRONTEND con la URL del backend en VITE_API_URL",
+    "3": "🔗 Finalmente actualiza FRONTEND_URL en el backend con la URL del frontend",
+    "4": "🔐 Los JWT secrets actuales son de prueba, cámbialos para producción real",
+    "5": "✅ Después del primer deploy, ejecuta en Railway terminal: npm run seed"
+  }
+}

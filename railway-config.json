@@ -22,7 +22,7 @@
   },
   "instrucciones_despliegue": {
     "paso_1": "� BACKEND: Crea un servicio en Railway desde GitHub",
-    "paso_2": "⚙️ BACKEND: Ve a Variables → Raw Editor → Pega todas las 'backend_variables'",
+    "paso_2": "⚙️ BACKEND: Ve a Variables → Cambia a pestaña 'Raw Editor' (ENV) → Copia y pega todas las variables de 'backend_variables' en formato ENV",
     "paso_3": "🔧 BACKEND: Settings → Root Directory: / (raíz)",
     "paso_4": "🚀 BACKEND: Start Command: node backend/server.js",
     "paso_5": "� BACKEND: Copia la URL del backend desplegado (ej: https://inventario-backend.up.railway.app)",
@@ -52,6 +52,8 @@
     "2": "📱 Luego despliega el FRONTEND con la URL del backend en VITE_API_URL",
     "3": "🔗 Finalmente actualiza FRONTEND_URL en el backend con la URL del frontend",
     "4": "🔐 Los JWT secrets actuales son de prueba, cámbialos para producción real",
-    "5": "✅ Después del primer deploy, ejecuta en Railway terminal: npm run seed"
+    "5": "✅ Después del primer deploy, ejecuta en Railway terminal: npm run seed",
+    "6": "✨ Usa el Raw Editor (pestaña ENV) para copiar/pegar todas las variables de una vez",
+    "7": "📋 Formato ENV: NOMBRE_VARIABLE=valor (una por línea, sin comillas ni espacios extra)"
   }
 }

@@ -10,6 +10,10 @@ class ApiClient {
   private client: AxiosInstance;
 
   constructor() {
+    // Log de la URL base para debugging
+    console.log("🔧 API Base URL:", config.apiUrl);
+    console.log("🔧 VITE_API_URL:", import.meta.env.VITE_API_URL);
+    
     // Crear instancia de axios con configuración base
     this.client = axios.create({
       baseURL: config.apiUrl,

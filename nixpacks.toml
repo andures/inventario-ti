@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["cd frontend && npm ci --include=dev"]
+
+[phases.build]
+cmds = ["cd frontend && NODE_OPTIONS='--max-old-space-size=4096' npm run build"]
+
+[start]
+cmd = "npx serve@14.2.5 frontend/dist -l $PORT"

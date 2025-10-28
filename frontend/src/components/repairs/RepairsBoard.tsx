@@ -10,10 +10,34 @@ import type {
   InventoryItem,
 } from "../../types";
 
-const columns: { key: RepairStatus; title: string; color: string }[] = [
-  { key: "pendiente", title: "Pendientes", color: "yellow.400" },
-  { key: "proceso", title: "En Proceso", color: "blue.400" },
-  { key: "finalizado", title: "Finalizado", color: "green.400" },
+const columns: {
+  key: RepairStatus;
+  title: string;
+  color: string;
+  bg: string;
+  borderColor: string;
+}[] = [
+  {
+    key: "pendiente",
+    title: "Pendientes",
+    color: "#fbbf24",
+    bg: "linear-gradient(135deg, #f59e0b, #d97706)",
+    borderColor: "#fbbf24",
+  },
+  {
+    key: "proceso",
+    title: "En Proceso",
+    color: "#3b82f6",
+    bg: "linear-gradient(135deg, #3b82f6, #2563eb)",
+    borderColor: "#3b82f6",
+  },
+  {
+    key: "finalizado",
+    title: "Finalizado",
+    color: "#10b981",
+    bg: "linear-gradient(135deg, #10b981, #059669)",
+    borderColor: "#10b981",
+  },
 ];
 
 export function RepairsBoard() {
@@ -214,18 +238,36 @@ export function RepairsBoard() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        mb={4}
+        mb={6}
+        flexWrap="wrap"
+        gap={4}
       >
-        <Heading size="md" color="gray.100">
-          Reparaciones
-        </Heading>
+        <Box>
+          <Heading size="3xl" color="white" fontWeight="bold" mb={1}>
+            Reparaciones
+          </Heading>
+          <Text color="#8b5cf6" fontWeight="semibold" fontSize="lg">
+            {items.length} reparaciones totales
+          </Text>
+        </Box>
         <Button
           onClick={openListModal}
-          bg="purple.600"
+          bgGradient="linear(to-r, #8b5cf6, #7c3aed)"
           color="white"
-          _hover={{ bg: "purple.500" }}
+          _hover={{
+            transform: "scale(1.05)",
+            boxShadow: "0 8px 25px rgba(139, 92, 246, 0.5)",
+          }}
+          size="lg"
+          px={10}
+          py={6}
+          fontWeight="bold"
+          fontSize="lg"
+          boxShadow="0 6px 20px rgba(139, 92, 246, 0.4)"
+          transition="all 0.3s"
+          borderRadius="xl"
         >
-          + Nueva reparación
+          ➕ Nueva reparación
         </Button>
       </Box>
 
@@ -665,23 +707,52 @@ export function RepairsBoard() {
       <Box
         display="grid"
         gridTemplateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}
-        gap={4}
+        gap={6}
       >
         {columns.map((col) => (
           <Box
             key={col.key}
-            bg="gray.900"
-            border="1px solid"
-            borderColor="gray.700"
-            borderRadius="12px"
-            p={3}
+            bg="#1a1a24"
+            border="3px solid"
+            borderColor={col.borderColor}
+            borderRadius="2xl"
+            p={5}
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => onDrop(e, col.key)}
-            minH="200px"
+            minH="300px"
+            transition="all 0.3s"
+            _hover={{
+              boxShadow: `0 8px 30px ${col.borderColor}40`,
+              transform: "translateY(-4px)",
+            }}
           >
-            <Text fontWeight="700" color={col.color} mb={2}>
-              {col.title} ({grouped[col.key]?.length ?? 0})
-            </Text>
+            <Box
+              bgGradient={col.bg}
+              p={4}
+              borderRadius="xl"
+              mb={4}
+              boxShadow="0 4px 15px rgba(0,0,0,0.3)"
+            >
+              <Text
+                fontWeight="900"
+                color="white"
+                fontSize="xl"
+                textAlign="center"
+                textTransform="uppercase"
+                letterSpacing="wide"
+              >
+                {col.title}
+              </Text>
+              <Text
+                color="white"
+                fontSize="2xl"
+                fontWeight="bold"
+                textAlign="center"
+                mt={2}
+              >
+                {grouped[col.key]?.length ?? 0}
+              </Text>
+            </Box>
             <Stack gap={3}>
               {grouped[col.key]?.map((t) => (
                 <Box
@@ -690,11 +761,18 @@ export function RepairsBoard() {
                   onDragStart={(e) =>
                     e.dataTransfer.setData("text/plain", t.id)
                   }
-                  bg="gray.800"
-                  border="1px solid"
-                  borderColor="gray.700"
-                  borderRadius="10px"
-                  p={3}
+                  bg="#0d0d15"
+                  border="2px solid"
+                  borderColor="#2a2a3a"
+                  borderRadius="xl"
+                  p={4}
+                  cursor="move"
+                  transition="all 0.2s"
+                  _hover={{
+                    borderColor: col.borderColor,
+                    boxShadow: `0 4px 15px ${col.borderColor}30`,
+                    transform: "scale(1.02)",
+                  }}
                 >
                   <Input
                     variant="subtle"
@@ -702,22 +780,36 @@ export function RepairsBoard() {
                     onChange={(e) =>
                       updateTicket(t.id, { titulo: e.target.value })
                     }
-                    fontWeight="600"
-                    color="gray.100"
-                    mb={2}
+                    fontWeight="700"
+                    color="white"
+                    fontSize="md"
+                    mb={3}
+                    bg="#1a1a24"
+                    border="2px solid"
+                    borderColor="#2a2a3a"
+                    _focus={{
+                      borderColor: col.borderColor,
+                      boxShadow: `0 0 0 1px ${col.borderColor}`,
+                    }}
                   />
                   <Input
                     variant="subtle"
-                    placeholder="Cliente (opcional)"
+                    placeholder="Cliente"
                     value={t.cliente ?? ""}
                     onChange={(e) =>
                       updateTicket(t.id, { cliente: e.target.value })
                     }
-                    bg="gray.900"
-                    borderColor="gray.700"
-                    color="gray.200"
+                    bg="#1a1a24"
+                    borderColor="#2a2a3a"
+                    border="2px solid"
+                    color="white"
                     size="sm"
-                    mb={2}
+                    mb={3}
+                    _focus={{
+                      borderColor: col.borderColor,
+                      boxShadow: `0 0 0 1px ${col.borderColor}`,
+                    }}
+                    _placeholder={{ color: "gray.500" }}
                   />
                   <Stack direction="row" gap={2} align="center">
                     <select
@@ -728,17 +820,19 @@ export function RepairsBoard() {
                         })
                       }
                       style={{
-                        height: "32px",
-                        padding: "0 8px",
-                        borderRadius: 8,
-                        backgroundColor: "#111827",
-                        border: "1px solid #374151",
-                        color: "#E5E7EB",
+                        height: "36px",
+                        padding: "0 10px",
+                        borderRadius: "8px",
+                        backgroundColor: "#1a1a24",
+                        border: "2px solid #2a2a3a",
+                        color: "#ffffff",
+                        fontWeight: "600",
+                        flex: 1,
                       }}
                     >
-                      <option value="baja">Baja</option>
-                      <option value="media">Media</option>
-                      <option value="alta">Alta</option>
+                      <option value="baja">🟢 Baja</option>
+                      <option value="media">🟡 Media</option>
+                      <option value="alta">🔴 Alta</option>
                     </select>
                     <Input
                       type="date"
@@ -751,9 +845,15 @@ export function RepairsBoard() {
                         })
                       }
                       size="sm"
-                      bg="gray.900"
-                      borderColor="gray.700"
-                      color="gray.200"
+                      bg="#1a1a24"
+                      borderColor="#2a2a3a"
+                      border="2px solid"
+                      color="white"
+                      flex={1}
+                      _focus={{
+                        borderColor: col.borderColor,
+                        boxShadow: `0 0 0 1px ${col.borderColor}`,
+                      }}
                     />
                   </Stack>
                 </Box>

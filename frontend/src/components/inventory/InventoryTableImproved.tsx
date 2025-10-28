@@ -139,33 +139,24 @@ export function InventoryTable() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        flexWrap="wrap"
-        gap={4}
       >
         <Box>
-          <Text fontSize="3xl" fontWeight="bold" color="white" mb={1}>
+          <Text fontSize="2xl" fontWeight="bold" color="white">
             Items del Inventario
           </Text>
-          <Text color="#10b981" fontWeight="semibold" fontSize="lg">
+          <Text color="gray.400" mt={1}>
             {items.length} equipos registrados
           </Text>
         </Box>
         <Button
           onClick={() => setShowForm(!showForm)}
-          bgGradient="linear(to-r, #10b981, #059669)"
+          bg="green.600"
           color="white"
-          _hover={{
-            transform: "scale(1.05)",
-            boxShadow: "0 8px 25px rgba(16, 185, 129, 0.5)",
-          }}
+          _hover={{ bg: "green.500" }}
           size="lg"
-          px={10}
-          py={6}
+          px={8}
           fontWeight="bold"
-          fontSize="lg"
-          boxShadow="0 6px 20px rgba(16, 185, 129, 0.4)"
-          transition="all 0.3s"
-          borderRadius="xl"
+          boxShadow="0 4px 15px rgba(34, 197, 94, 0.3)"
         >
           {showForm ? "❌ Cancelar" : "➕ Agregar Equipo"}
         </Button>
@@ -174,43 +165,24 @@ export function InventoryTable() {
       {/* Formulario de agregar (mejorado) */}
       {showForm && (
         <Card.Root
-          bg="#1a1a24"
-          border="2px solid"
-          borderColor="#10b981"
-          borderRadius="2xl"
+          bg="gray.800"
+          border="1px solid"
+          borderColor="green.600"
+          borderRadius="xl"
           mb={6}
-          boxShadow="0 8px 30px rgba(16, 185, 129, 0.3)"
+          boxShadow="0 4px 20px rgba(34, 197, 94, 0.2)"
         >
-          <Card.Body p={8}>
-            <Box display="flex" alignItems="center" gap={3} mb={6}>
-              <Box
-                bg="rgba(16, 185, 129, 0.15)"
-                p={3}
-                borderRadius="xl"
-                border="2px solid"
-                borderColor="#10b981"
-              >
-                <Text fontSize="3xl">➕</Text>
-              </Box>
-              <Box>
-                <Text fontSize="2xl" fontWeight="bold" color="white">
-                  Nuevo Equipo
-                </Text>
-                <Text color="gray.400">Completa la información del equipo</Text>
-              </Box>
-            </Box>
+          <Card.Body p={6}>
+            <Text fontSize="lg" fontWeight="bold" color="white" mb={4}>
+              ➕ Nuevo Equipo
+            </Text>
             <Grid
               templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
               gap={4}
               mb={4}
             >
               <Box>
-                <Text
-                  fontSize="sm"
-                  color="#10b981"
-                  mb={2}
-                  fontWeight="semibold"
-                >
+                <Text fontSize="sm" color="gray.400" mb={2}>
                   Nombre *
                 </Text>
                 <Input
@@ -219,27 +191,17 @@ export function InventoryTable() {
                   onChange={(e) =>
                     setForm((f) => ({ ...f, nombre: e.target.value }))
                   }
-                  bg="#0d0d15"
-                  border="2px solid"
-                  borderColor="#2a2a3a"
-                  color="white"
+                  bg="gray.900"
+                  border="1px solid"
+                  borderColor="gray.700"
                   _focus={{
-                    borderColor: "#10b981",
-                    boxShadow: "0 0 0 1px #10b981",
+                    borderColor: "green.500",
+                    boxShadow: "0 0 0 1px var(--chakra-colors-green-500)",
                   }}
-                  _hover={{
-                    borderColor: "#374151",
-                  }}
-                  size="lg"
                 />
               </Box>
               <Box>
-                <Text
-                  fontSize="sm"
-                  color="#10b981"
-                  mb={2}
-                  fontWeight="semibold"
-                >
+                <Text fontSize="sm" color="gray.400" mb={2}>
                   Categoría
                 </Text>
                 <Input
@@ -248,27 +210,17 @@ export function InventoryTable() {
                   onChange={(e) =>
                     setForm((f) => ({ ...f, categoria: e.target.value }))
                   }
-                  bg="#0d0d15"
-                  border="2px solid"
-                  borderColor="#2a2a3a"
-                  color="white"
+                  bg="gray.900"
+                  border="1px solid"
+                  borderColor="gray.700"
                   _focus={{
-                    borderColor: "#10b981",
-                    boxShadow: "0 0 0 1px #10b981",
+                    borderColor: "green.500",
+                    boxShadow: "0 0 0 1px var(--chakra-colors-green-500)",
                   }}
-                  _hover={{
-                    borderColor: "#374151",
-                  }}
-                  size="lg"
                 />
               </Box>
               <Box>
-                <Text
-                  fontSize="sm"
-                  color="#10b981"
-                  mb={2}
-                  fontWeight="semibold"
-                >
+                <Text fontSize="sm" color="gray.400" mb={2}>
                   Serie
                 </Text>
                 <Input
@@ -277,18 +229,13 @@ export function InventoryTable() {
                   onChange={(e) =>
                     setForm((f) => ({ ...f, serie: e.target.value }))
                   }
-                  bg="#0d0d15"
-                  border="2px solid"
-                  borderColor="#2a2a3a"
-                  color="white"
+                  bg="gray.900"
+                  border="1px solid"
+                  borderColor="gray.700"
                   _focus={{
-                    borderColor: "#10b981",
-                    boxShadow: "0 0 0 1px #10b981",
+                    borderColor: "green.500",
+                    boxShadow: "0 0 0 1px var(--chakra-colors-green-500)",
                   }}
-                  _hover={{
-                    borderColor: "#374151",
-                  }}
-                  size="lg"
                 />
               </Box>
             </Grid>

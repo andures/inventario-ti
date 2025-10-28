@@ -1,5 +1,11 @@
-[phases.build]
-cmds = ["npm install", "npm run build"]
+[phases.setup]
+nixPkgs = ["nodejs_22"]
 
-[phases.start]
-cmd = "npx serve dist -l $PORT"
+[phases.install]
+cmds = ["npm ci --include=dev"]
+
+[phases.build]
+cmds = ["NODE_OPTIONS='--max-old-space-size=4096' npm run build"]
+
+[start]
+cmd = "npx serve@14.2.5 dist -l $PORT"

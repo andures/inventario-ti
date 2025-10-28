@@ -36,9 +36,9 @@ export function UploadImage() {
       return;
     }
 
-    // Validar tamaño (máximo 2MB)
-    if (file.size > 2 * 1024 * 1024) {
-      alert("La imagen es demasiado grande. Máximo 2MB");
+    // Validar tamaño (máximo 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      alert("La imagen es demasiado grande. Máximo 10MB");
       return;
     }
 

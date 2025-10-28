@@ -4,9 +4,10 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   // URL del backend según el modo
-  const apiUrl = mode === 'production' 
-    ? 'https://inventario-ti-production-7ba5.up.railway.app/api'
-    : 'http://localhost:3000/api';
+  const apiUrl =
+    mode === "production"
+      ? "https://inventario-ti-production-7ba5.up.railway.app/api"
+      : "http://localhost:3000/api";
 
   return {
     plugins: [react()],

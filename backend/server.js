@@ -78,8 +78,8 @@ app.use(
 );
 
 // Body parser - Parsear JSON y URL encoded con límites de seguridad
-app.use(express.json({ limit: "10kb" }));
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(express.json({ limit: "15mb" })); // Aumentado para permitir imágenes base64
+app.use(express.urlencoded({ extended: true, limit: "15mb" }));
 
 /**
  * Data Sanitization - Protección contra NoSQL Injection
